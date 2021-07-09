@@ -1,1 +1,3 @@
-# getir-challenge
+# React Init
+
+Getir Coding Challenge
