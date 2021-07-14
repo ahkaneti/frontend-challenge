@@ -3,6 +3,7 @@ import { TEXT_COLORS, BACKGROUND_COLORS } from 'tokens/colors';
 
 export const CartWrapper = styled.div`
   height: inherit;
+  background: white;
 `;
 
 export const TotalPrice = styled.p`
@@ -17,20 +18,29 @@ export const TotalPrice = styled.p`
   width: 92px;
   font-size: 14px;
   color: ${TEXT_COLORS.NOT_SELECTED};
+  align-items: center;
+  display: flex;
+  justify-content: center;
 `;
 
 export const ItemList = styled.div`
   height: inherit;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
 `;
 
 export const Item = styled.div`
   width: 231px;
-  background: red;
   position: relative;
   height: 41px;
 `;
 
 export const QuantityHandler = styled.div`
+  display: flex;
+  width: 74px;
+  flex-direction: row;
   button {
     background: inherit;
     color: ${TEXT_COLORS.NOT_SELECTED};
