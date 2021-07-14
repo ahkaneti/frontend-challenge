@@ -1,10 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { FilterWrapper, FilterBox } from './styles';
+import axios from 'axios';
 
-export const Filter = ({ filterName, info }) => {
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  add,
+  remove,
+  selectCompanyFilter,
+} from 'redux/features/filters/companyFilterSlice';
+
+import { FilterWrapper, FilterBox, CompanyList, Company } from './styles';
+
+export const Filter = ({ filterName }) => {
   const [searchValue, setSearchValue] = useState('');
-  const [selectedFilters, setSelectedFilters] = useState([]);
+  const [companies, setCompanies] = useState([]);
+
+  const dispatch = useDispatch();
+  const companyFilter = useSelector(selectCompanyFilter);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/companies').then(res => {
+      setCompanies(res.data);
+    });
+  }, []);
+
+  const changeFilterStatus = company => {
+    if (companyFilter.indexOf(company) !== -1) {
+      dispatch(remove(company));
+    } else {
+      dispatch(add(company));
+    }
+  };
+
   return (
     <FilterWrapper>
       <p>{filterName}</p>
@@ -14,19 +41,30 @@ export const Filter = ({ filterName, info }) => {
           placeholder={`Search ${filterName}`}
           onChange={e => setSearchValue(e.target.value)}
         />
-        {info.map(i => {
-          return (
-            <div>
-              <input
-                type="checkbox"
-                id="vehicle1"
-                name="vehicle1"
-                value="Bike"
-              />
-              <label>{i}</label>
-            </div>
-          );
-        })}
+        <CompanyList>
+          {filterName === 'Brands' &&
+            companies.map(company => {
+              return (
+                <Company
+                  key={company.slug}
+                  selected={companyFilter.indexOf(company.slug) !== -1}
+                >
+                  <i
+                    className={
+                      companyFilter.indexOf(company.slug) !== -1
+                        ? 'ri-checkbox-fill'
+                        : 'ri-checkbox-blank-fill'
+                    }
+                    onClick={() => {
+                      changeFilterStatus(company.slug);
+                    }}
+                  />
+                  <label>{company.name}</label>
+                  <br />
+                </Company>
+              );
+            })}
+        </CompanyList>
       </FilterBox>
     </FilterWrapper>
   );
