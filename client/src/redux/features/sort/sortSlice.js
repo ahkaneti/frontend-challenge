@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { SORT_MODES } from 'tokens/sort';
+
 const initialState = {
-  value: 'Price low to high',
+  value: SORT_MODES.LOW_TO_HIGH,
 };
 
 export const sortSlice = createSlice({

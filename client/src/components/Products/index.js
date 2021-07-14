@@ -7,6 +7,8 @@ import {
   ProductGrid,
 } from './styles';
 
+import { SORT_MODES } from 'tokens/sort';
+
 //Suanlik datayi burda cekiyorum ama belki baska bir yere koymak daha mantiklidir?
 import { selectCompanyFilter } from 'redux/features/filters/companyFilterSlice';
 import { selectSort } from 'redux/features/sort/sortSlice';
@@ -29,20 +31,20 @@ export const Products = () => {
     `http://localhost:3000/items?_sort=price&_order=desc&_page=${page}&_limit=16`
   );
   const sort = useSelector(selectSort);
-
+  console.log(totalPage);
   useEffect(() => {
     let link = ``;
     switch (sort) {
-      case 'Price low to high':
+      case SORT_MODES.LOW_TO_HIGH:
         link = `http://localhost:3000/items?_sort=price&_order=asc&_page=${page}&_limit=16`;
         break;
-      case 'Price high to low':
+      case SORT_MODES.HIGH_TO_LOW:
         link = `http://localhost:3000/items?_sort=price&_order=desc&_page=${page}&_limit=16`;
         break;
-      case 'New to old':
+      case SORT_MODES.NEW_TO_OLD:
         link = `http://localhost:3000/items?_sort=added&_order=desc&_page=${page}&_limit=16`;
         break;
-      case 'Old to new':
+      case SORT_MODES.OLD_TO_NEW:
         link = `http://localhost:3000/items?_sort=added&_order=asc&_page=${page}&_limit=16`;
         break;
       default:

@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { SortWrapper, SortList, SortValue } from './styles';
 
 import { edit, selectSort } from 'redux/features/sort/sortSlice';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { SORT_MODES } from 'tokens/sort';
 
 export const Sort = () => {
   const dispatch = useDispatch();
@@ -20,46 +22,46 @@ export const Sort = () => {
         <SortValue>
           <i
             className={
-              sort === 'Price low to high'
+              sort === SORT_MODES.LOW_TO_HIGH
                 ? 'ri-checkbox-circle-line'
                 : 'ri-checkbox-blank-circle-line'
             }
-            onClick={() => changeSort('Price low to high')}
+            onClick={() => changeSort(SORT_MODES.LOW_TO_HIGH)}
           />
-          <label>Price low to high</label>
+          <label>{SORT_MODES.LOW_TO_HIGH}</label>
         </SortValue>
         <SortValue>
           <i
             className={
-              sort === 'Price high to low'
+              sort === SORT_MODES.HIGH_TO_LOW
                 ? 'ri-checkbox-circle-line'
                 : 'ri-checkbox-blank-circle-line'
             }
-            onClick={() => changeSort('Price high to low')}
+            onClick={() => changeSort(SORT_MODES.HIGH_TO_LOW)}
           />
-          <label>Price high to low</label>
+          <label>{SORT_MODES.HIGH_TO_LOW}</label>
         </SortValue>
         <SortValue>
           <i
             className={
-              sort === 'New to old'
+              sort === SORT_MODES.NEW_TO_OLD
                 ? 'ri-checkbox-circle-line'
                 : 'ri-checkbox-blank-circle-line'
             }
-            onClick={() => changeSort('New to old')}
+            onClick={() => changeSort(SORT_MODES.NEW_TO_OLD)}
           />
-          <label>New to old</label>
+          <label>{SORT_MODES.NEW_TO_OLD}</label>
         </SortValue>
         <SortValue>
           <i
             className={
-              sort === 'Old to new'
+              sort === SORT_MODES.OLD_TO_NEW
                 ? 'ri-checkbox-circle-line'
                 : 'ri-checkbox-blank-circle-line'
             }
-            onClick={() => changeSort('Old to new')}
+            onClick={() => changeSort(SORT_MODES.OLD_TO_NEW)}
           />
-          <label>Old to new</label>
+          <label>{SORT_MODES.OLD_TO_NEW}</label>
         </SortValue>
       </SortList>
     </SortWrapper>

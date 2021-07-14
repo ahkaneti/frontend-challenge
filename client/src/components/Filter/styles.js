@@ -1,9 +1,11 @@
 import styled from 'styled-components/macro';
 import { BACKGROUND_COLORS, TEXT_COLORS } from 'tokens/colors';
 
+import { SIDEPANEL_WIDTH } from 'tokens/dimensions';
+
 export const FilterWrapper = styled.div`
   height: 274px;
-  width: 296px;
+  width: ${SIDEPANEL_WIDTH}px;
   p {
     margin-bottom: 12px;
     color: ${TEXT_COLORS.COMPONENT};

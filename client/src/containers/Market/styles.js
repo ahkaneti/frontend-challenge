@@ -1,6 +1,7 @@
 import styled from 'styled-components/macro';
 import { BACKGROUND_COLORS } from 'tokens/colors';
 import { FONTS } from 'tokens/fonts';
+import { SIDEPANEL_WIDTH } from 'tokens/dimensions';
 
 export const Wrapper = styled.div`
   background-color: ${BACKGROUND_COLORS.DEFAULT};
@@ -22,5 +23,5 @@ export const SidePanel = styled.div`
   flex-direction: column;
   margin-left: 104px;
   margin-right: 8px;
-  width: 296px;
+  width: ${SIDEPANEL_WIDTH}px;
 `;
