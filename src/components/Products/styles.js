@@ -25,9 +25,12 @@ export const ItemTypeFilterButton = styled.button`
   width: 60px;
   height: 30px;
   color: ${TEXT_COLORS.NOT_SELECTED};
+  border-radius: 2px;
   :first-child {
     margin-right: 8px;
   }
+  font-size: 13px;
+  transition: 500ms;
   border: 0;
   ${({ selected }) =>
     selected &&

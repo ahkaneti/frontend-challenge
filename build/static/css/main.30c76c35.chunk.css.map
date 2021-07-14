@@ -1,1 +1,0 @@
-{"version":3,"sources":["App.css"],"names":[],"mappings":"AAAA,EACE,QACF,CAEA,kBACE,cACF,CAEA,OACE,cAAe,CACf,QAAW,CACX,UACF","file":"main.30c76c35.chunk.css","sourcesContent":["* {\n  margin: 0;\n}\n\ninput[type='radio'] {\n  margin-top: 4px;\n}\n\nbutton {\n  cursor: pointer;\n  border: 0px;\n  color: white;\n}\n"]}
