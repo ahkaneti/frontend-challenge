@@ -1,10 +1,10 @@
-const updateNotifier = require('update-notifier')
-const yargs = require('yargs')
-const run = require('./run')
-const pkg = require('../../package.json')
+const updateNotifier = require('update-notifier');
+const yargs = require('yargs');
+const run = require('./run');
+const pkg = require('../../package.json');
 
 module.exports = function () {
-  updateNotifier({ pkg }).notify()
+  updateNotifier({ pkg }).notify();
 
   const argv = yargs
     .config('config')
@@ -18,7 +18,7 @@ module.exports = function () {
       host: {
         alias: 'H',
         description: 'Set host',
-        default: 'localhost',
+        default: '127.0.0.1',
       },
       watch: {
         alias: 'w',
@@ -91,7 +91,7 @@ module.exports = function () {
     .example('$0 file.js', '')
     .example('$0 http://example.com/db.json', '')
     .epilog('https://github.com/typicode/json-server')
-    .require(1, 'Missing <source> argument').argv
+    .require(1, 'Missing <source> argument').argv;
 
-  run(argv)
-}
+  run(argv);
+};

@@ -1,60 +1,67 @@
 import React, { useState, useEffect } from 'react';
 
-import { SortWrapper, SortValues } from './styles';
+import { SortWrapper, SortList, SortValue } from './styles';
 
-export const Sort = props => {
-  const [sortValue, setSortValue] = useState('Price High to Low');
+import { edit, selectSort } from 'redux/features/sort/sortSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
-  useEffect(() => {
-    props.setSortVal(sortValue);
-  }, [props, sortValue]);
+export const Sort = () => {
+  const dispatch = useDispatch();
+  const sort = useSelector(selectSort);
 
-  const changeSort = e => {
-    e.persist();
-    setSortValue(e.target.value);
+  const changeSort = sortVal => {
+    dispatch(edit(sortVal));
   };
+
   return (
     <SortWrapper>
       <p>Sorting</p>
-      <SortValues onChange={changeSort}>
-        <label>
-          <input
-            type="radio"
-            value="Price High to Low"
-            checked={sortValue === 'Price High to Low'}
-            onChange={e => setSortValue(e.target.value)}
+      <SortList>
+        <SortValue>
+          <i
+            className={
+              sort === 'Price low to high'
+                ? 'ri-checkbox-circle-line'
+                : 'ri-checkbox-blank-circle-line'
+            }
+            onClick={() => changeSort('Price low to high')}
           />
-          Price High to Low
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="Price Low to High"
-            checked={sortValue === 'Price Low to High'}
-            onChange={e => setSortValue(e.target.value)}
+          <label>Price low to high</label>
+        </SortValue>
+        <SortValue>
+          <i
+            className={
+              sort === 'Price high to low'
+                ? 'ri-checkbox-circle-line'
+                : 'ri-checkbox-blank-circle-line'
+            }
+            onClick={() => changeSort('Price high to low')}
           />
-          Price Low to High
-        </label>
-        <label>
-          <input
-            id={2}
-            type="radio"
-            value="New to Old"
-            checked={sortValue === 'New to Old'}
-            onChange={e => setSortValue(e.target.value)}
+          <label>Price high to low</label>
+        </SortValue>
+        <SortValue>
+          <i
+            className={
+              sort === 'New to old'
+                ? 'ri-checkbox-circle-line'
+                : 'ri-checkbox-blank-circle-line'
+            }
+            onClick={() => changeSort('New to old')}
           />
-          New to Old
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="Old to New"
-            checked={sortValue === 'Old to New'}
-            onChange={e => setSortValue(e.target.value)}
+          <label>New to old</label>
+        </SortValue>
+        <SortValue>
+          <i
+            className={
+              sort === 'Old to new'
+                ? 'ri-checkbox-circle-line'
+                : 'ri-checkbox-blank-circle-line'
+            }
+            onClick={() => changeSort('Old to new')}
           />
-          Old to New
-        </label>
-      </SortValues>
+          <label>Old to new</label>
+        </SortValue>
+      </SortList>
     </SortWrapper>
   );
 };
