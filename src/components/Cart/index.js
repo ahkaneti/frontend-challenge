@@ -7,6 +7,9 @@ import {
   ItemList,
   QuantityHandler,
   Item,
+  InfoWrapper,
+  ItemPrice,
+  ItemName,
   TotalPrice,
 } from './styles';
 
@@ -22,8 +25,10 @@ export const Cart = () => {
         {Object.keys(cart.items).map(item => {
           return (
             <Item key={item}>
-              <p>{item}</p>
-              <p>{cart.items[item]['price']}</p>
+              <InfoWrapper>
+                <ItemName>{item}</ItemName>
+                <ItemPrice>₺{cart.items[item][0]['price']}</ItemPrice>
+              </InfoWrapper>
               <QuantityHandler>
                 <button
                   onClick={() => {

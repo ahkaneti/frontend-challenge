@@ -50,3 +50,50 @@ export const ProductGrid = styled.div`
   padding-left: 20px;
   padding-top: 20px;
 `;
+
+export const ButtonWrapper = styled.div`
+  width: 535px;
+  height: 40px;
+  margin: auto;
+  background: inherit;
+  display: flex;
+  flex-direction: row;
+  margin-top: 32px;
+  justify-content: space-evenly;
+`;
+
+export const DirectionButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background: inherit;
+  font-family: 'open sans';
+  font-size: 14px;
+  p {
+    margin: 0 7px;
+  }
+  i {
+    font-size: 16px;
+    margin-top: 1px;
+  }
+  :first-child {
+    color: ${TEXT_COLORS.NOT_SELECTED};
+  }
+  :last-child {
+    color: ${TEXT_COLORS.PAGE};
+  }
+`;
+
+export const NumberButton = styled.button`
+  width: 32px;
+  height: 40px;
+  background: inherit;
+  color: ${TEXT_COLORS.PAGE};
+  ${({ selected }) =>
+    selected &&
+    `
+    color: white;
+    background: #1EA4CE;
+    border-radius: 2px;`};
+`;

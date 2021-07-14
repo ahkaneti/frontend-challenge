@@ -18,6 +18,7 @@ export const TopbarHolder = styled.div`
   color: ${TEXT_COLORS.TOPBAR};
   position: fixed;
   top: 0px;
+  z-index: 999;
 `;
 
 export const BagHolder = styled.div`

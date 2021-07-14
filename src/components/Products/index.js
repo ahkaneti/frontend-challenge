@@ -5,6 +5,9 @@ import {
   ItemTypeFilter,
   ItemTypeFilterButton,
   ProductGrid,
+  ButtonWrapper,
+  DirectionButton,
+  NumberButton,
 } from './styles';
 
 import { SORT_MODES } from 'tokens/sort';
@@ -32,7 +35,6 @@ export const Products = () => {
     `${LINK}/items?_sort=price&_order=desc&_page=${page}&_limit=16`
   );
   const sort = useSelector(selectSort);
-  console.log(totalPage);
   useEffect(() => {
     let link = ``;
     switch (sort) {
@@ -66,7 +68,7 @@ export const Products = () => {
       setTotalPage(Math.ceil(res.headers['x-total-count'] / 16));
       if (res.data.length > 0) setItems(res.data);
     });
-  }, [dbLink, page, companyFilter]);
+  }, [dbLink]);
 
   return (
     <ProductsWrapper>
@@ -90,13 +92,45 @@ export const Products = () => {
           return <ProductItem item={item} key={item.name + item.added} />;
         })}
       </ProductGrid>
-      <button
-        onClick={() => {
-          setPage(prev => prev + 1);
-        }}
-      >
-        +
-      </button>
+      <ButtonWrapper>
+        <DirectionButton
+          onClick={() => {
+            setPage(prev => Math.max(prev - 1, 1));
+          }}
+        >
+          <i className="ri-arrow-left-line" />
+          <p>Prev</p>
+        </DirectionButton>
+        {/* {
+          [...Array(totalPage)].map((page, i) => {
+            return <NumberButton key={page}>{i}</NumberButton>;
+          })
+        } */}
+        <NumberButton
+          selected={page === 1}
+          onClick={() => {
+            setPage(1);
+          }}
+        >
+          1
+        </NumberButton>
+        <NumberButton
+          selected={page === 2}
+          onClick={() => {
+            setPage(2);
+          }}
+        >
+          2
+        </NumberButton>
+        <DirectionButton
+          onClick={() => {
+            setPage(prev => Math.min(prev + 1, totalPage));
+          }}
+        >
+          <p>Next</p>
+          <i className="ri-arrow-right-line" />
+        </DirectionButton>
+      </ButtonWrapper>
     </ProductsWrapper>
   );
 };

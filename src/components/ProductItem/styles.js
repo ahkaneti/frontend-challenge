@@ -7,6 +7,7 @@ export const ProductItemWrapper = styled.div`
     background: ${BACKGROUND_COLORS.LIGHT};
     border-radius: 2px;
     font-size: 12px;
+    height: 22px;
   }
   width: 124px;
   height: 225px;

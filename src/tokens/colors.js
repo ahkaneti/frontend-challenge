@@ -4,8 +4,9 @@ const BACKGROUND_COLOR = '#E5E5E5';
 const FLU_BUTTON = '#F2F0FD';
 const WHITE = '#fff';
 const COMPONENT = '#6f6f6f';
+const PAGE = '#697488';
 const FILTER = '#E0E0E0';
-
+const BORDER = '#F4F4F4';
 const TEXT = '#525252';
 
 export const BACKGROUND_COLORS = {
@@ -15,6 +16,7 @@ export const BACKGROUND_COLORS = {
   DARK: SECONDARY_COLOR,
   UNSELECTED: FLU_BUTTON,
   FILTER: FILTER,
+  BORDER: BORDER,
 };
 
 export const TEXT_COLORS = {
@@ -23,4 +25,5 @@ export const TEXT_COLORS = {
   COMPONENT: COMPONENT,
   NOT_SELECTED: PRIMARY_COLOR,
   SELECTED: FLU_BUTTON,
+  PAGE: PAGE,
 };

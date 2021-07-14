@@ -7,7 +7,7 @@ import { Sort } from 'components/Sort';
 import { Filter } from 'components/Filter';
 import { Products } from 'components/Products';
 
-import { Wrapper, SidePanel, MarketWrapper } from './styles';
+import { Wrapper, SidePanel, MarketWrapper, Footer } from './styles';
 
 const Market = () => {
   const [sortVal, setSortVal] = useState(0);
@@ -22,6 +22,11 @@ const Market = () => {
         </SidePanel>
         <Products sortVal={sortVal} />
       </MarketWrapper>
+      <Footer>
+        <p>©2019 Market</p>
+        <p>•</p>
+        <p>Privacy Policy</p>
+      </Footer>
     </Wrapper>
   );
 };

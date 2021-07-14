@@ -16,15 +16,17 @@ export const cartSlice = createSlice({
         ? (state.items[action.payload['name']][1] += 1)
         : (state.items[action.payload['name']] = [action.payload, 1]);
       state.totalPrice =
-        Math.ceil((action.payload['price'] + state.totalPrice) * 100) / 100;
+        Math.floor((action.payload['price'] + state.totalPrice) * 100) / 100;
     },
     //remove
     remove(state, action) {
       state.items[action.payload['name']][1] === 1
         ? delete state.items[action.payload['name']]
         : (state.items[action.payload['name']][1] -= 1);
-      state.totalPrice =
-        Math.ceil((state.totalPrice - action.payload['price']) * 100) / 100;
+      state.totalPrice = Math.max(
+        Math.floor((state.totalPrice - action.payload['price']) * 100) / 100,
+        0
+      );
     },
   },
 });
