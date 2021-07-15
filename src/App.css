@@ -4,6 +4,9 @@ input[type='radio'] {
 * {
   margin: 0;
 }
+body {
+  overflow-x: hidden;
+}
 button {
   cursor: pointer;
   border: 0px;

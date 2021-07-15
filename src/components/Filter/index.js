@@ -45,27 +45,32 @@ export const Filter = ({ filterName }) => {
         />
         <CompanyList>
           {filterName === 'Brands' &&
-            companies.map(company => {
-              return (
-                <Company
-                  key={company.slug}
-                  selected={companyFilter.indexOf(company.slug) !== -1}
-                >
-                  <i
-                    className={
-                      companyFilter.indexOf(company.slug) !== -1
-                        ? 'ri-checkbox-fill'
-                        : 'ri-checkbox-blank-fill'
-                    }
-                    onClick={() => {
-                      changeFilterStatus(company.slug);
-                    }}
-                  />
-                  <label>{company.name}</label>
-                  <br />
-                </Company>
-              );
-            })}
+            companies
+              .filter(
+                ({ name }) =>
+                  name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1
+              )
+              .map(company => {
+                return (
+                  <Company
+                    key={company.slug}
+                    selected={companyFilter.indexOf(company.slug) !== -1}
+                  >
+                    <i
+                      className={
+                        companyFilter.indexOf(company.slug) !== -1
+                          ? 'ri-checkbox-fill'
+                          : 'ri-checkbox-blank-fill'
+                      }
+                      onClick={() => {
+                        changeFilterStatus(company.slug);
+                      }}
+                    />
+                    <label>{company.name}</label>
+                    <br />
+                  </Company>
+                );
+              })}
         </CompanyList>
       </FilterBox>
     </FilterWrapper>

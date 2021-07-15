@@ -21,7 +21,6 @@ export const Cart = () => {
   return (
     <CartWrapper>
       <ItemList>
-        {console.log(cart.items)}
         {Object.keys(cart.items).map(item => {
           return (
             <Item key={item}>

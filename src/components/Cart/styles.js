@@ -34,10 +34,10 @@ export const ItemList = styled.div`
   flex-direction: column;
   overflow-y: scroll;
   overflow-x: hidden;
-  /* ::-webkit-scrollbar {
-    width: 0px; /* Remove scrollbar space */
+  ::-webkit-scrollbar {
+    width: 0px; //Remove scrollbar space
     /* background: transparent; Optional: just make scrollbar invisible */
-  } */
+  }
 `;
 
 export const Item = styled.div`

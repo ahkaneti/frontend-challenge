@@ -11,20 +11,27 @@ export const cartSlice = createSlice({
   reducers: {
     //add
     add(state, action) {
-      console.log(`adding ${action.payload['name']} `);
-      state.items[action.payload['name']]
-        ? (state.items[action.payload['name']][1] += 1)
-        : (state.items[action.payload['name']] = [action.payload, 1]);
-      state.totalPrice =
-        Math.floor((action.payload['price'] + state.totalPrice) * 100) / 100;
+      const { name, price } = action.payload;
+      console.log({ state });
+      if (state.items[name]) {
+        state.items[name][1] += 1;
+      } else {
+        console.log(action.payload, 'boom');
+        state.items[name] = [action.payload, 1];
+        console.log(state.items);
+      }
+      state.totalPrice = Math.floor((price + state.totalPrice) * 100) / 100;
     },
     //remove
     remove(state, action) {
-      state.items[action.payload['name']][1] === 1
-        ? delete state.items[action.payload['name']]
-        : (state.items[action.payload['name']][1] -= 1);
+      const { name, price } = action.payload;
+      if (state.items[name][1] === 1) {
+        delete state.items[name];
+      } else {
+        state.items[name][1] -= 1;
+      }
       state.totalPrice = Math.max(
-        Math.floor((state.totalPrice - action.payload['price']) * 100) / 100,
+        Math.floor((state.totalPrice - price) * 100) / 100,
         0
       );
     },
