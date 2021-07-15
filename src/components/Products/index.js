@@ -1,3 +1,4 @@
+/* eslint-disable no-fallthrough */
 import React, { useState, useEffect } from 'react';
 
 import {
@@ -26,6 +27,7 @@ import axios from 'axios';
 import { ProductItem } from 'components/ProductItem';
 
 export const Products = () => {
+  const [activePages, setActivePages] = useState([]);
   const [selectedType, setSelectedType] = useState('mug');
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
@@ -64,6 +66,46 @@ export const Products = () => {
   }, [sort, page, selectedType, companyFilter]);
 
   useEffect(() => {
+    let pages = [];
+    if (totalPage < 7) {
+      pages = [...Array(totalPage + 1).keys()].splice(1);
+    } else {
+      pages.push(1, 2);
+      switch (page) {
+        case 4:
+          pages.push(page - 1);
+        case 3:
+          pages.push(page);
+        case 2:
+          pages.push(page + 1, '...');
+          break;
+        case totalPage - 3:
+          pages.push('...', page - 1, page, page + 1);
+          break;
+        case totalPage - 2:
+          pages.push('...', page - 1, page);
+          break;
+        case totalPage - 1:
+          pages.push('...', page - 1);
+          break;
+        case 1:
+        case totalPage:
+          pages.push('...');
+          break;
+        default:
+          pages.push('...', page - 1, page, page + 1, '...');
+      }
+      pages.push(totalPage - 1, totalPage);
+    }
+    setActivePages(pages);
+  }, [page, totalPage]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [totalPage]);
+
+  useEffect(() => {
+    console.log(dbLink);
     axios.get(dbLink).then(res => {
       setTotalPage(Math.ceil(res.headers['x-total-count'] / 16));
       if (res.data.length > 0) setItems(res.data);
@@ -101,27 +143,23 @@ export const Products = () => {
           <i className="ri-arrow-left-line" />
           <p>Prev</p>
         </DirectionButton>
-        {/* {
-          [...Array(totalPage)].map((page, i) => {
-            return <NumberButton key={page}>{i}</NumberButton>;
-          })
-        } */}
-        <NumberButton
-          selected={page === 1}
-          onClick={() => {
-            setPage(1);
-          }}
-        >
-          1
-        </NumberButton>
-        <NumberButton
-          selected={page === 2}
-          onClick={() => {
-            setPage(2);
-          }}
-        >
-          2
-        </NumberButton>
+        {activePages.map((activePage, i) => {
+          return (
+            <NumberButton
+              key={i}
+              dots={activePage === '...'}
+              selected={page === activePage}
+              onClick={() => {
+                if (activePage !== '...') {
+                  setPage(activePage);
+                }
+              }}
+            >
+              {activePage}
+            </NumberButton>
+          );
+        })}
+
         <DirectionButton
           onClick={() => {
             setPage(prev => Math.min(prev + 1, totalPage));

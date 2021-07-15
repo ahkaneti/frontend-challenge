@@ -23,6 +23,7 @@ export const TopbarHolder = styled.div`
 
 export const BagHolder = styled.div`
   position: absolute;
+  cursor: pointer;
   background: ${BACKGROUND_COLORS.DARK};
   left: 84%;
   width: 130px;

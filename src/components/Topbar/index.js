@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useSelector } from 'react-redux';
 
@@ -9,19 +9,23 @@ import { Cart } from 'components/Cart';
 import { selectCart } from 'redux/features/cart/cartSlice';
 
 export const Topbar = () => {
+  const [displayCart, setDisplayCart] = useState(false);
   const cart = useSelector(selectCart);
+
   return (
     <TopbarWrapper>
       <TopbarHolder>
         <h1>market</h1>
-        <BagHolder>
+        <BagHolder onClick={() => setDisplayCart(prev => !prev)}>
           <i className="ri-shopping-bag-line" />
           <p>₺{cart.totalPrice}</p>
         </BagHolder>
       </TopbarHolder>
-      <CartHolder>
-        <Cart />
-      </CartHolder>
+      {displayCart && (
+        <CartHolder>
+          <Cart />
+        </CartHolder>
+      )}
     </TopbarWrapper>
   );
 };

@@ -90,6 +90,8 @@ export const NumberButton = styled.button`
   height: 40px;
   background: inherit;
   color: ${TEXT_COLORS.PAGE};
+  transition: 500ms;
+  ${({ dots }) => dots && `cursor: default;`}
   ${({ selected }) =>
     selected &&
     `
