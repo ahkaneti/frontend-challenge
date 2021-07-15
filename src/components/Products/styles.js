@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled, { keyframes } from 'styled-components/macro';
 
 import { BACKGROUND_COLORS, TEXT_COLORS } from 'tokens/colors';
 
@@ -39,6 +39,11 @@ export const ItemTypeFilterButton = styled.button`
   color: ${TEXT_COLORS.SELECTED};`}
 `;
 
+const spin = keyframes`
+0%{transform: rotate(0deg);}
+100% {transform:rotate(360deg);}
+`;
+
 export const ProductGrid = styled.div`
   margin-top: 16px;
   display: flex;
@@ -49,6 +54,12 @@ export const ProductGrid = styled.div`
   gap: 22px 24px;
   padding-left: 20px;
   padding-top: 20px;
+  i {
+    margin: auto;
+    height: 50px;
+    font-size: 50px;
+    animation: ${spin} 2000ms infinite;
+  }
 `;
 
 export const ButtonWrapper = styled.div`

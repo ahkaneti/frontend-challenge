@@ -33,7 +33,7 @@ export const BagHolder = styled.div`
   justify-content: space-evenly;
 `;
 export const CartHolder = styled.div`
-  position: absolute;
+  position: fixed;
   width: 296px;
   height: 338.25px;
   left: 1040px;

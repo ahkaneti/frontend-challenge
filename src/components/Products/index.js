@@ -32,10 +32,13 @@ export const Products = () => {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const [items, setItems] = useState([]);
-  const companyFilter = useSelector(selectCompanyFilter);
+  const [loading, setLoading] = useState(true);
   const [dbLink, setDbLink] = useState(
     `${LINK}/items?_sort=price&_order=desc&_page=${page}&_limit=16`
   );
+
+  const companyFilter = useSelector(selectCompanyFilter);
+
   const sort = useSelector(selectSort);
   useEffect(() => {
     let link = ``;
@@ -107,6 +110,7 @@ export const Products = () => {
   useEffect(() => {
     console.log(dbLink);
     axios.get(dbLink).then(res => {
+      setLoading(false);
       setTotalPage(Math.ceil(res.headers['x-total-count'] / 16));
       if (res.data.length > 0) setItems(res.data);
     });
@@ -130,9 +134,13 @@ export const Products = () => {
         </ItemTypeFilterButton>
       </ItemTypeFilter>
       <ProductGrid>
-        {items.map(item => {
-          return <ProductItem item={item} key={item.name + item.added} />;
-        })}
+        {loading ? (
+          <i className="ri-refresh-line" />
+        ) : (
+          items.map(item => {
+            return <ProductItem item={item} key={item.name + item.added} />;
+          })
+        )}
       </ProductGrid>
       <ButtonWrapper>
         <DirectionButton

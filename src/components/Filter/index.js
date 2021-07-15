@@ -16,12 +16,14 @@ import { FilterWrapper, FilterBox, CompanyList, Company } from './styles';
 export const Filter = ({ filterName }) => {
   const [searchValue, setSearchValue] = useState('');
   const [companies, setCompanies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
   const companyFilter = useSelector(selectCompanyFilter);
 
   useEffect(() => {
     axios.get(`${LINK}/companies`).then(res => {
+      setLoading(false);
       setCompanies(res.data);
     });
   }, []);
@@ -44,7 +46,10 @@ export const Filter = ({ filterName }) => {
           onChange={e => setSearchValue(e.target.value)}
         />
         <CompanyList>
-          {filterName === 'Brands' &&
+          {loading ? (
+            <i className="ri-refresh-line" />
+          ) : (
+            filterName === 'Brands' &&
             companies
               .filter(
                 ({ name }) =>
@@ -70,7 +75,8 @@ export const Filter = ({ filterName }) => {
                     <br />
                   </Company>
                 );
-              })}
+              })
+          )}
         </CompanyList>
       </FilterBox>
     </FilterWrapper>
