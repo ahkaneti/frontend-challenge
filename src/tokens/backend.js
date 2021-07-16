@@ -1,1 +1,1 @@
-export const LINK = 'https://getir-challenge-backend.herokuapp.com';
+export const LINK = 'https://aaron-backend-challenge.herokuapp.com';
