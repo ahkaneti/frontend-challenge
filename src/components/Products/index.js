@@ -70,6 +70,23 @@ export const Products = () => {
 
   useEffect(() => {
     let pages = [];
+    // switch (page) {
+    //   case page <= 4:
+
+    //     break;
+    //   case page >= totalPage - 3:
+    //     break;
+    //   default:
+    //     if (page > 4) {
+    //       pages.push(1, 2, '...');
+    //     }
+    //     pages.push(page - 1, page, page + 1);
+    //     if (page < totalPage - 3) {
+    //       pages.push('...', totalPage - 1, totalPage);
+    //     }
+    //     break;
+    // }
+
     if (totalPage < 7) {
       pages = [...Array(totalPage + 1).keys()].splice(1);
     } else {
