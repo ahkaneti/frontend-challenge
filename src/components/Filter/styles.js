@@ -40,7 +40,7 @@ const spin = keyframes`
 0%{transform: rotate(0deg);}
 100% {transform:rotate(360deg);}
 `;
-export const CompanyList = styled.div`
+export const FilterList = styled.div`
   height: 142px;
   overflow-y: scroll;
   display: flex;

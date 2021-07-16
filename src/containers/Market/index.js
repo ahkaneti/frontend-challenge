@@ -17,8 +17,8 @@ const Market = () => {
       <MarketWrapper>
         <SidePanel>
           <Sort setSortVal={setSortVal} />
-          <Filter info={[]} filterName={'Brands'} />
-          <Filter info={[]} filterName={'Tags'} />
+          <Filter filterName={'Brands'} />
+          <Filter filterName={'Tags'} />
         </SidePanel>
         <Products sortVal={sortVal} />
       </MarketWrapper>

@@ -11,24 +11,47 @@ import {
   selectCompanyFilter,
 } from 'redux/features/filters/companyFilterSlice';
 
-import { FilterWrapper, FilterBox, CompanyList, Company } from './styles';
+import {
+  add as addTag,
+  remove as removeTag,
+  selectTagFilter,
+} from 'redux/features/filters/tagFilterSlice';
+
+import { FilterWrapper, FilterBox, FilterList, Company } from './styles';
 
 export const Filter = ({ filterName }) => {
   const [searchValue, setSearchValue] = useState('');
+  const [tags, setTags] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
   const companyFilter = useSelector(selectCompanyFilter);
+  const tagFilter = useSelector(selectTagFilter);
 
   useEffect(() => {
-    axios.get(`${LINK}/companies`).then(res => {
-      setLoading(false);
-      setCompanies(res.data);
-    });
-  }, []);
+    if (filterName === 'Brands') {
+      axios.get(`${LINK}/companies`).then(res => {
+        setLoading(false);
+        setCompanies(res.data);
+      });
+    } else {
+      axios.get(`${LINK}/tags`).then(res => {
+        setLoading(false);
+        setTags(res.data);
+      });
+    }
+  }, [filterName]);
 
-  const changeFilterStatus = company => {
+  const changeTagFilterStatus = tag => {
+    if (tagFilter.indexOf(tag) !== -1) {
+      dispatch(removeTag(tag));
+    } else {
+      dispatch(addTag(tag));
+    }
+  };
+
+  const changeCompanyFilterStatus = company => {
     if (companyFilter.indexOf(company) !== -1) {
       dispatch(remove(company));
     } else {
@@ -45,11 +68,10 @@ export const Filter = ({ filterName }) => {
           placeholder={`Search ${filterName}`}
           onChange={e => setSearchValue(e.target.value)}
         />
-        <CompanyList>
+        <FilterList>
           {loading ? (
             <i className="ri-refresh-line" />
-          ) : (
-            filterName === 'Brands' &&
+          ) : filterName === 'Brands' ? (
             companies
               .filter(
                 ({ name }) =>
@@ -68,7 +90,7 @@ export const Filter = ({ filterName }) => {
                           : 'ri-checkbox-blank-fill'
                       }
                       onClick={() => {
-                        changeFilterStatus(company.slug);
+                        changeCompanyFilterStatus(company.slug);
                       }}
                     />
                     <label>{company.name}</label>
@@ -76,8 +98,29 @@ export const Filter = ({ filterName }) => {
                   </Company>
                 );
               })
+          ) : (
+            tags
+              .filter(tag => tag.toLowerCase().indexOf(searchValue) !== -1)
+              .map(tag => {
+                return (
+                  <Company key={tag} selected={tagFilter.indexOf(tag) !== -1}>
+                    <i
+                      className={
+                        tagFilter.indexOf(tag) !== -1
+                          ? 'ri-checkbox-fill'
+                          : 'ri-checkbox-blank-fill'
+                      }
+                      onClick={() => {
+                        changeTagFilterStatus(tag);
+                      }}
+                    />
+                    <label>{tag}</label>
+                    <br />
+                  </Company>
+                );
+              })
           )}
-        </CompanyList>
+        </FilterList>
       </FilterBox>
     </FilterWrapper>
   );

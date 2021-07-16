@@ -1,8 +1,8 @@
 # dependencies
-# /node_modules
+/node_modules
 
 # production
-# /build
+/build
 
 # misc
 .DS_Store
@@ -14,3 +14,4 @@ cypress.env.json
 
 # Local Netlify folder
 .netlify
+node_modules
