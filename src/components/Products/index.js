@@ -16,6 +16,7 @@ import { LINK } from 'tokens/backend';
 
 //Suanlik datayi burda cekiyorum ama belki baska bir yere koymak daha mantiklidir?
 import { selectCompanyFilter } from 'redux/features/filters/companyFilterSlice';
+import { selectTagFilter } from 'redux/features/filters/tagFilterSlice';
 import { selectSort } from 'redux/features/sort/sortSlice';
 
 import { useSelector } from 'react-redux';
@@ -38,6 +39,7 @@ export const Products = () => {
   );
 
   const companyFilter = useSelector(selectCompanyFilter);
+  const tagFilter = useSelector(selectTagFilter);
 
   const sort = useSelector(selectSort);
   useEffect(() => {
@@ -64,9 +66,12 @@ export const Products = () => {
     companyFilter.map(company => {
       return (link += `&manufacturer=${company}`);
     });
+    tagFilter.map(tag => {
+      return (link += `&tags_like=${tag}`);
+    });
     console.log(link);
     setDbLink(link);
-  }, [sort, page, selectedType, companyFilter]);
+  }, [sort, page, selectedType, companyFilter, tagFilter]);
 
   useEffect(() => {
     let pages = [];
@@ -125,11 +130,13 @@ export const Products = () => {
   }, [totalPage]);
 
   useEffect(() => {
-    console.log(dbLink);
     axios.get(dbLink).then(res => {
       setLoading(false);
       setTotalPage(Math.ceil(res.headers['x-total-count'] / 16));
       if (res.data.length > 0) setItems(res.data);
+      else {
+        setItems([]);
+      }
     });
   }, [dbLink]);
 
@@ -153,10 +160,12 @@ export const Products = () => {
       <ProductGrid>
         {loading ? (
           <i className="ri-refresh-line" />
-        ) : (
+        ) : items.length > 0 ? (
           items.map(item => {
             return <ProductItem item={item} key={item.name + item.added} />;
           })
+        ) : (
+          <div>No items for these parameters.</div>
         )}
       </ProductGrid>
       <ButtonWrapper>
