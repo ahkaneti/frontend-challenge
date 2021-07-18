@@ -6,6 +6,8 @@ import { TopbarHolder, BagHolder, TopbarWrapper, CartHolder } from './styles';
 
 import { Cart } from 'components/Cart';
 
+import { SHOPPING_BAG } from 'tokens/icons';
+
 import { selectCart } from 'redux/features/cart/cartSlice';
 
 export const Topbar = () => {
@@ -17,7 +19,7 @@ export const Topbar = () => {
       <TopbarHolder>
         <h1>market</h1>
         <BagHolder onClick={() => setDisplayCart(prev => !prev)}>
-          <i className="ri-shopping-bag-line" />
+          <i className={SHOPPING_BAG} />
           <p>₺{cart.totalPrice}</p>
         </BagHolder>
       </TopbarHolder>

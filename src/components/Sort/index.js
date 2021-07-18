@@ -5,6 +5,8 @@ import { SortWrapper, SortList, SortValue } from './styles';
 import { edit, selectSort } from 'redux/features/sort/sortSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { CHECKBOX_CIRCLE, CHECKBOX_CIRCLE_EMPTY } from 'tokens/icons';
+
 import { SORT_MODES } from 'tokens/sort';
 
 export const Sort = () => {
@@ -23,8 +25,8 @@ export const Sort = () => {
           <i
             className={
               sort === SORT_MODES.LOW_TO_HIGH
-                ? 'ri-checkbox-circle-line'
-                : 'ri-checkbox-blank-circle-line'
+                ? CHECKBOX_CIRCLE
+                : CHECKBOX_CIRCLE_EMPTY
             }
             onClick={() => changeSort(SORT_MODES.LOW_TO_HIGH)}
           />
@@ -34,8 +36,8 @@ export const Sort = () => {
           <i
             className={
               sort === SORT_MODES.HIGH_TO_LOW
-                ? 'ri-checkbox-circle-line'
-                : 'ri-checkbox-blank-circle-line'
+                ? CHECKBOX_CIRCLE
+                : CHECKBOX_CIRCLE_EMPTY
             }
             onClick={() => changeSort(SORT_MODES.HIGH_TO_LOW)}
           />
@@ -45,8 +47,8 @@ export const Sort = () => {
           <i
             className={
               sort === SORT_MODES.NEW_TO_OLD
-                ? 'ri-checkbox-circle-line'
-                : 'ri-checkbox-blank-circle-line'
+                ? CHECKBOX_CIRCLE
+                : CHECKBOX_CIRCLE_EMPTY
             }
             onClick={() => changeSort(SORT_MODES.NEW_TO_OLD)}
           />
@@ -56,8 +58,8 @@ export const Sort = () => {
           <i
             className={
               sort === SORT_MODES.OLD_TO_NEW
-                ? 'ri-checkbox-circle-line'
-                : 'ri-checkbox-blank-circle-line'
+                ? CHECKBOX_CIRCLE
+                : CHECKBOX_CIRCLE_EMPTY
             }
             onClick={() => changeSort(SORT_MODES.OLD_TO_NEW)}
           />

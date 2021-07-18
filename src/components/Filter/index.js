@@ -11,6 +11,8 @@ import {
   selectCompanyFilter,
 } from 'redux/features/filters/companyFilterSlice';
 
+import { CHECKBOX, CHECKBOX_EMPTY } from 'tokens/icons';
+
 import {
   add as addTag,
   remove as removeTag,
@@ -86,8 +88,8 @@ export const Filter = ({ filterName }) => {
                     <i
                       className={
                         companyFilter.indexOf(company.slug) !== -1
-                          ? 'ri-checkbox-fill'
-                          : 'ri-checkbox-blank-fill'
+                          ? CHECKBOX
+                          : CHECKBOX_EMPTY
                       }
                       onClick={() => {
                         changeCompanyFilterStatus(company.slug);
@@ -107,8 +109,8 @@ export const Filter = ({ filterName }) => {
                     <i
                       className={
                         tagFilter.indexOf(tag) !== -1
-                          ? 'ri-checkbox-fill'
-                          : 'ri-checkbox-blank-fill'
+                          ? CHECKBOX
+                          : CHECKBOX_EMPTY
                       }
                       onClick={() => {
                         changeTagFilterStatus(tag);
