@@ -49,3 +49,24 @@ Has the immutable numbers and colors in file. This file is created for the ease 
 Contains style changes that were required for all of the project.
 6. `index.js`
 The file that is compiling all of the project, which calls the container `Market`
+
+#Requirements and their fulfillments
+
+### 1) The project's framework must be React. 
+The project has been written using the most recent version of React.
+### 2) Typescript, which is not a must
+The project was written in pure JavaScript.
+### 3) Although not necessary, the use of Redux is a must
+Redux has been used for inter-component transfer of state knowledge.
+### 4) The project should be deployed. 
+The project was deployed using netlify at https://frontend-challenge-ag.netlify.app and the backend at https://aaron-backend-challenge.herokuapp.com
+### 5) The design file must be coded pixel-perfect and responsive.
+The website is completely responsive with respects to the design. 
+### 6) The given data files should be used by json-server
+The given data files were manipulated and used by the project and deployed on json-server which has become the backend of the project. 
+### 7) Free to use icons and placeholder images. 
+### 8) There must be a pagination with up to 16 products per page.
+There is a pagination for all products displayed in the `ProductList`. 
+### 9) Sorting, Brands filter, Tag filter, and itemType filters should be working properly.
+### 10) We should be able to add and remove products from the basket and the number of products in the basket should be manageable by buttons.
+### 11) We should be able to add products to the basket and remove products from the basket and the number of products in the basket should be manageable by buttons in the basket next to each product.
