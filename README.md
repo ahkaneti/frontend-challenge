@@ -50,7 +50,7 @@ Contains style changes that were required for all of the project.
 6. `index.js`
 The file that is compiling all of the project, which calls the container `Market`
 
-#Requirements and their fulfillments
+# Requirements and their fulfillments
 
 ### 1) The project's framework must be React. 
 The project has been written using the most recent version of React.
