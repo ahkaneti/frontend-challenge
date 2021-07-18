@@ -8,7 +8,7 @@ git clone https://github.com/ahkaneti/frontend-challenge.git
 
 ### Step 2) `cd` into repo, install `node_modules`
 ```sh
-$ cd rn-test-app
+$ cd frontend-challenge
 $ yarn
 ```
 
