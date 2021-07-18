@@ -20,16 +20,16 @@ $ yarn start
 # Front-end Challenge File Structure
 The repo, after download is supposed to contain 4 files and 4 folders. The files are as follows: 
 
-###1) `yarn.lock` which is supposed to contain information about the node modules. 
-###2) `package.json` which records metadata about the content of the repo.
-###3) `jsonconfig.json` which means the that the directory is the root of a JavaScript Project.
-###4) `README.md` which is this file, the information on the project.
+### 1) `yarn.lock` which is supposed to contain information about the node modules. 
+### 2) `package.json` which records metadata about the content of the repo.
+### 3) `jsonconfig.json` which means the that the directory is the root of a JavaScript Project.
+### 4) `README.md` which is this file, the information on the project.
 
 The folders are as follows: 
-###1) `public` which is the file that contains the HTML files for the React project.
-###2) `build` which is a directory with a production build of your app. 
-###3) `src` which contains the work for this project. There are 4 subfolders and 2 files in this folder.
-###4) `node_modules` which contains all code used for the project that was outsourced. (Including the components for redux, styled components, axios and remix-icons.
+### 1) `public` which is the file that contains the HTML files for the React project.
+### 2) `build` which is a directory with a production build of your app. 
+### 3) `src` which contains the work for this project. There are 4 subfolders and 2 files in this folder.
+### 4) `node_modules` which contains all code used for the project that was outsourced. (Including the components for redux, styled components, axios and remix-icons.
 
 The `src` folder contains 4 folders and 2 files: 
 
