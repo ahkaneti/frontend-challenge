@@ -14,17 +14,16 @@ export const Wrapper = styled.div`
 export const MarketWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  margin: 0 104px;
   margin-top: 38.36px;
-
   padding-bottom: 136px;
 `;
 
 export const SidePanel = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 104px;
   margin-right: 8px;
-  width: ${SIDEPANEL_WIDTH}px;
+  width: ${SIDEPANEL_WIDTH}vw;
 `;
 
 export const Footer = styled.div`

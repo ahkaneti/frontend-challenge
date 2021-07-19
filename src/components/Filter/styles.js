@@ -1,11 +1,10 @@
 import styled, { keyframes } from 'styled-components/macro';
 import { BACKGROUND_COLORS, TEXT_COLORS } from 'tokens/colors';
-
-import { SIDEPANEL_WIDTH } from 'tokens/dimensions';
+import { SIDEPANEL_BOX_PADDING } from 'tokens/dimensions';
+import { FONT_SIZES } from 'tokens/fonts';
 
 export const FilterWrapper = styled.div`
   height: 274px;
-  width: ${SIDEPANEL_WIDTH}px;
   p {
     margin-bottom: 12px;
     color: ${TEXT_COLORS.COMPONENT};
@@ -24,16 +23,15 @@ export const FilterBox = styled.div`
   /* justify-content: center; */
   flex-direction: column;
   input {
-    width: 248px;
     height: 48px !important;
-    margin: 24px;
+    margin: ${SIDEPANEL_BOX_PADDING / 2}px;
     border: 2px solid #e0e0e0;
     box-sizing: border-box;
     border-radius: 2px;
     padding-left: 16px;
     font-family: 'inter';
   }
-  padding-bottom: 24px;
+  padding: ${SIDEPANEL_BOX_PADDING}px;
 `;
 
 const spin = keyframes`
@@ -48,17 +46,17 @@ export const FilterList = styled.div`
   i {
     margin: auto;
     height: 50px;
-    width: 50px;
+    /* width: 50px; */
     font-size: 50px;
     animation: ${spin} 2000ms infinite;
   }
 `;
 
-export const Company = styled.div`
+export const FilterValue = styled.div`
   display: flex;
-  margin-bottom: 18px;
-  margin-left: 24px;
+  padding: ${SIDEPANEL_BOX_PADDING / 2}px;
   margin-top: 1px;
+  font-size: ${FONT_SIZES.SIDEPANEL_BOX_OPTION}vw;
   i {
     animation: none;
     margin-left: 0;

@@ -8,6 +8,7 @@ export const ProductItemWrapper = styled.div`
     border-radius: 2px;
     font-size: 12px;
     height: 22px;
+    width: 100%;
   }
   width: 124px;
   height: 225px;

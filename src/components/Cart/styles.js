@@ -55,6 +55,7 @@ export const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 14px;
+  color: black;
 `;
 export const ItemName = styled.p``;
 export const ItemPrice = styled.p`

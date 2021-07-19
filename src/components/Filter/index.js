@@ -19,7 +19,7 @@ import {
   selectTagFilter,
 } from 'redux/features/filters/tagFilterSlice';
 
-import { FilterWrapper, FilterBox, FilterList, Company } from './styles';
+import { FilterWrapper, FilterBox, FilterList, FilterValue } from './styles';
 
 export const Filter = ({ filterName }) => {
   const [searchValue, setSearchValue] = useState('');
@@ -81,7 +81,7 @@ export const Filter = ({ filterName }) => {
               )
               .map(company => {
                 return (
-                  <Company
+                  <FilterValue
                     key={company.slug}
                     selected={companyFilter.indexOf(company.slug) !== -1}
                   >
@@ -97,7 +97,7 @@ export const Filter = ({ filterName }) => {
                     />
                     <label>{company.name}</label>
                     <br />
-                  </Company>
+                  </FilterValue>
                 );
               })
           ) : (
@@ -105,7 +105,10 @@ export const Filter = ({ filterName }) => {
               .filter(tag => tag.toLowerCase().indexOf(searchValue) !== -1)
               .map(tag => {
                 return (
-                  <Company key={tag} selected={tagFilter.indexOf(tag) !== -1}>
+                  <FilterValue
+                    key={tag}
+                    selected={tagFilter.indexOf(tag) !== -1}
+                  >
                     <i
                       className={
                         tagFilter.indexOf(tag) !== -1
@@ -118,7 +121,7 @@ export const Filter = ({ filterName }) => {
                     />
                     <label>{tag}</label>
                     <br />
-                  </Company>
+                  </FilterValue>
                 );
               })
           )}
