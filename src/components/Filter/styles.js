@@ -56,7 +56,7 @@ export const FilterValue = styled.div`
   display: flex;
   padding: ${SIDEPANEL_BOX_PADDING / 2}px;
   margin-top: 1px;
-  font-size: ${FONT_SIZES.SIDEPANEL_BOX_OPTION}vw;
+  font-size: min(${FONT_SIZES.SIDEPANEL_BOX_OPTION}vw, 16px);
   i {
     animation: none;
     margin-left: 0;

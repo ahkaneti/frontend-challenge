@@ -26,7 +26,7 @@ export const SortValue = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   padding: ${SIDEPANEL_BOX_PADDING / 2}px;
-  font-size: ${FONT_SIZES.SIDEPANEL_BOX_OPTION}vw;
+  font-size: min(${FONT_SIZES.SIDEPANEL_BOX_OPTION}vw, 16px);
   width: 100%;
   label {
     color: ${TEXT_COLORS.DEFAULT};
@@ -34,7 +34,9 @@ export const SortValue = styled.div`
   }
   i {
     color: ${BACKGROUND_COLORS.LIGHT};
-    font-size: 1.44vw;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
     cursor: pointer;
   }
 `;

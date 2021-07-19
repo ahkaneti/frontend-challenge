@@ -49,11 +49,11 @@ export const ProductGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
   background: ${BACKGROUND_COLORS.COMPONENT};
-  height: 1008px;
   max-width: 716px;
-  gap: 22px 1.4vw;
-  padding: 20px 4.16vw;
-  justify-content: flex-start;
+  width: 41vw;
+  gap: 22px 24px;
+  padding: 20px;
+  justify-content: space-between;
   i {
     margin: auto;
     height: 50px;

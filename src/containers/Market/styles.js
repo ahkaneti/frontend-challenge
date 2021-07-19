@@ -6,7 +6,7 @@ import { SIDEPANEL_WIDTH } from 'tokens/dimensions';
 export const Wrapper = styled.div`
   background-color: ${BACKGROUND_COLORS.DEFAULT};
   height: fit-content;
-  width: 100vw;
+  width: 100%;
   font-family: ${FONTS.PRIMARY};
   position: relative;
 `;
@@ -14,9 +14,10 @@ export const Wrapper = styled.div`
 export const MarketWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 0 104px;
+  margin: 0 7.22vw;
   margin-top: 38.36px;
   padding-bottom: 136px;
+  justify-content: center;
 `;
 
 export const SidePanel = styled.div`
@@ -24,6 +25,7 @@ export const SidePanel = styled.div`
   flex-direction: column;
   margin-right: 8px;
   width: ${SIDEPANEL_WIDTH}vw;
+  min-width: 155px;
 `;
 
 export const Footer = styled.div`

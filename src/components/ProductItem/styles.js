@@ -25,7 +25,7 @@ export const ProductImageWrapper = styled.div`
   height: 124px;
   top: 223px;
   width: 124px;
-  border: 1.17666px solid #f3f0fe;
+  border: 1.18px solid #f3f0fe;
   display: flex;
   justify-content: center;
   align-items: center;
