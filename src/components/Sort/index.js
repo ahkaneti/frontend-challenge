@@ -21,50 +21,19 @@ export const Sort = () => {
     <SortWrapper>
       <p>Sorting</p>
       <SortList>
-        <SortValue>
-          <i
-            className={
-              sort === SORT_MODES.LOW_TO_HIGH
-                ? CHECKBOX_CIRCLE
-                : CHECKBOX_CIRCLE_EMPTY
-            }
-            onClick={() => changeSort(SORT_MODES.LOW_TO_HIGH)}
-          />
-          <label>{SORT_MODES.LOW_TO_HIGH}</label>
-        </SortValue>
-        <SortValue>
-          <i
-            className={
-              sort === SORT_MODES.HIGH_TO_LOW
-                ? CHECKBOX_CIRCLE
-                : CHECKBOX_CIRCLE_EMPTY
-            }
-            onClick={() => changeSort(SORT_MODES.HIGH_TO_LOW)}
-          />
-          <label>{SORT_MODES.HIGH_TO_LOW}</label>
-        </SortValue>
-        <SortValue>
-          <i
-            className={
-              sort === SORT_MODES.NEW_TO_OLD
-                ? CHECKBOX_CIRCLE
-                : CHECKBOX_CIRCLE_EMPTY
-            }
-            onClick={() => changeSort(SORT_MODES.NEW_TO_OLD)}
-          />
-          <label>{SORT_MODES.NEW_TO_OLD}</label>
-        </SortValue>
-        <SortValue>
-          <i
-            className={
-              sort === SORT_MODES.OLD_TO_NEW
-                ? CHECKBOX_CIRCLE
-                : CHECKBOX_CIRCLE_EMPTY
-            }
-            onClick={() => changeSort(SORT_MODES.OLD_TO_NEW)}
-          />
-          <label>{SORT_MODES.OLD_TO_NEW}</label>
-        </SortValue>
+        {Object.values(SORT_MODES).map((value, i) => {
+          return (
+            <SortValue key={i}>
+              <i
+                className={
+                  sort === value ? CHECKBOX_CIRCLE : CHECKBOX_CIRCLE_EMPTY
+                }
+                onClick={() => changeSort(value)}
+              />
+              <label>{value}</label>
+            </SortValue>
+          );
+        })}
       </SortList>
     </SortWrapper>
   );

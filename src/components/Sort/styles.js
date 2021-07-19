@@ -26,7 +26,7 @@ export const SortValue = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   padding: ${SIDEPANEL_BOX_PADDING / 2}px;
-  font-size: min(${FONT_SIZES.SIDEPANEL_BOX_OPTION}vw, 16px);
+  font-size: min(${FONT_SIZES.SIDEPANEL_BOX_OPTION}em, 16px);
   width: 100%;
   label {
     color: ${TEXT_COLORS.DEFAULT};

@@ -20,7 +20,6 @@ export const FilterBox = styled.div`
   box-shadow: 0px 6px 24px rgba(93, 62, 188, 0.04);
   border-radius: 2px;
   display: flex;
-  /* justify-content: center; */
   flex-direction: column;
   input {
     height: 48px !important;
@@ -29,7 +28,7 @@ export const FilterBox = styled.div`
     box-sizing: border-box;
     border-radius: 2px;
     padding-left: 16px;
-    font-family: 'inter';
+    font-family: 'Inter';
   }
   padding: ${SIDEPANEL_BOX_PADDING}px;
 `;
@@ -56,22 +55,24 @@ export const FilterValue = styled.div`
   display: flex;
   padding: ${SIDEPANEL_BOX_PADDING / 2}px;
   margin-top: 1px;
-  font-size: min(${FONT_SIZES.SIDEPANEL_BOX_OPTION}vw, 16px);
+  font-size: min(${FONT_SIZES.SIDEPANEL_BOX_OPTION}em, 16px);
   i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     animation: none;
     margin-left: 0;
-    color: ${BACKGROUND_COLORS.COMPONENT};
-    font-size: 22px;
-    height: 22px;
-    width: 22px;
+    font-size: 18px;
+    height: 13px;
+    color: white;
+    width: 13px;
     margin-right: 8px;
     box-shadow: 0px 1px 7px rgba(93, 56, 192, 0.4);
     border-radius: 2px;
     ${({ selected }) =>
       selected &&
       `
-    color: ${BACKGROUND_COLORS.LIGHT};
-    box-shadow: 0px 0px 0px;
+      color: ${BACKGROUND_COLORS.LIGHT};
     `}
   }
 `;

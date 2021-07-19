@@ -12,13 +12,10 @@ export const cartSlice = createSlice({
     //add
     add(state, action) {
       const { name, price } = action.payload;
-      console.log({ state });
       if (state.items[name]) {
         state.items[name][1] += 1;
       } else {
-        console.log(action.payload, 'boom');
         state.items[name] = [action.payload, 1];
-        console.log(state.items);
       }
       state.totalPrice = Math.floor((price + state.totalPrice) * 100) / 100;
     },

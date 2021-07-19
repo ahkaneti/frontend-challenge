@@ -14,15 +14,11 @@ import {
 import { SORT_MODES } from 'tokens/sort';
 import { LINK } from 'tokens/backend';
 
-//Suanlik datayi burda cekiyorum ama belki baska bir yere koymak daha mantiklidir?
 import { selectCompanyFilter } from 'redux/features/filters/companyFilterSlice';
 import { selectTagFilter } from 'redux/features/filters/tagFilterSlice';
 import { selectSort } from 'redux/features/sort/sortSlice';
 
 import { useSelector } from 'react-redux';
-
-//Items'dan kucuk bir parca alarak test yapildi, calistiktan sonra stylinge gecildi.
-//Dosyalarin cekilmesi icin axios
 import axios from 'axios';
 
 import { ProductItem } from 'components/ProductItem';
@@ -40,8 +36,8 @@ export const Products = () => {
 
   const companyFilter = useSelector(selectCompanyFilter);
   const tagFilter = useSelector(selectTagFilter);
-
   const sort = useSelector(selectSort);
+
   useEffect(() => {
     let link = ``;
     switch (sort) {

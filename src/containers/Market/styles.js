@@ -17,7 +17,7 @@ export const MarketWrapper = styled.div`
   margin: 0 7.22vw;
   margin-top: 38.36px;
   padding-bottom: 136px;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
 export const SidePanel = styled.div`

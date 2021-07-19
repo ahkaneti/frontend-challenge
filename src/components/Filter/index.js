@@ -23,8 +23,7 @@ import { FilterWrapper, FilterBox, FilterList, FilterValue } from './styles';
 
 export const Filter = ({ filterName }) => {
   const [searchValue, setSearchValue] = useState('');
-  const [tags, setTags] = useState([]);
-  const [companies, setCompanies] = useState([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
@@ -35,30 +34,36 @@ export const Filter = ({ filterName }) => {
     if (filterName === 'Brands') {
       axios.get(`${LINK}/companies`).then(res => {
         setLoading(false);
-        setCompanies(res.data);
+        setData(res.data);
       });
     } else {
       axios.get(`${LINK}/tags`).then(res => {
         setLoading(false);
-        setTags(res.data);
+        setData(res.data);
       });
     }
   }, [filterName]);
 
-  const changeTagFilterStatus = tag => {
-    if (tagFilter.indexOf(tag) !== -1) {
-      dispatch(removeTag(tag));
+  const changeFilterStatus = data => {
+    if (filterName === 'Tags') {
+      if (tagFilter.indexOf(data) !== -1) {
+        dispatch(removeTag(data));
+      } else {
+        dispatch(addTag(data));
+      }
     } else {
-      dispatch(addTag(tag));
+      if (companyFilter.indexOf(data) !== -1) {
+        dispatch(remove(data));
+      } else {
+        dispatch(add(data));
+      }
     }
   };
 
-  const changeCompanyFilterStatus = company => {
-    if (companyFilter.indexOf(company) !== -1) {
-      dispatch(remove(company));
-    } else {
-      dispatch(add(company));
-    }
+  const selected = name => {
+    if (filterName === 'Brands') {
+      return companyFilter.indexOf(name) !== -1;
+    } else return tagFilter.indexOf(name) !== -1;
   };
 
   return (
@@ -73,53 +78,28 @@ export const Filter = ({ filterName }) => {
         <FilterList>
           {loading ? (
             <i className="ri-refresh-line" />
-          ) : filterName === 'Brands' ? (
-            companies
-              .filter(
-                ({ name }) =>
-                  name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1
-              )
-              .map(company => {
-                return (
-                  <FilterValue
-                    key={company.slug}
-                    selected={companyFilter.indexOf(company.slug) !== -1}
-                  >
-                    <i
-                      className={
-                        companyFilter.indexOf(company.slug) !== -1
-                          ? CHECKBOX
-                          : CHECKBOX_EMPTY
-                      }
-                      onClick={() => {
-                        changeCompanyFilterStatus(company.slug);
-                      }}
-                    />
-                    <label>{company.name}</label>
-                    <br />
-                  </FilterValue>
-                );
-              })
           ) : (
-            tags
-              .filter(tag => tag.toLowerCase().indexOf(searchValue) !== -1)
-              .map(tag => {
+            data
+              .filter(
+                filterName === 'Brands'
+                  ? ({ name }) =>
+                      name.toLowerCase().indexOf(searchValue.toLowerCase()) !==
+                      -1
+                  : tag => tag.toLowerCase().indexOf(searchValue) !== -1
+              )
+              .map(filter => {
+                const name = filterName === 'Brands' ? filter.slug : filter;
                 return (
-                  <FilterValue
-                    key={tag}
-                    selected={tagFilter.indexOf(tag) !== -1}
-                  >
+                  <FilterValue key={name} selected={selected(name)}>
                     <i
-                      className={
-                        tagFilter.indexOf(tag) !== -1
-                          ? CHECKBOX
-                          : CHECKBOX_EMPTY
-                      }
+                      className={selected(name) ? CHECKBOX : CHECKBOX_EMPTY}
                       onClick={() => {
-                        changeTagFilterStatus(tag);
+                        changeFilterStatus(name);
                       }}
                     />
-                    <label>{tag}</label>
+                    <label>
+                      {filterName === 'Brands' ? filter.name : filter}
+                    </label>
                     <br />
                   </FilterValue>
                 );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import 'App.css';
 import 'remixicon/fonts/remixicon.css';
 
@@ -10,17 +10,16 @@ import { Products } from 'components/Products';
 import { Wrapper, SidePanel, MarketWrapper, Footer } from './styles';
 
 const Market = () => {
-  const [sortVal, setSortVal] = useState(0);
   return (
     <Wrapper>
       <Topbar />
       <MarketWrapper>
         <SidePanel>
-          <Sort setSortVal={setSortVal} />
+          <Sort />
           <Filter filterName={'Brands'} />
           <Filter filterName={'Tags'} />
         </SidePanel>
-        <Products sortVal={sortVal} />
+        <Products />
       </MarketWrapper>
       <Footer>
         <p>©2019 Market</p>
